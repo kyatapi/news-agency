@@ -38,19 +38,13 @@ bool ArticlePaymentCalculator::Calculate() {
 		getline(cin, line);
 		istringstream iss(line);
 		iss >> testCount;
-		int* prices = new int[testCount];
 
 		for (int t = 0; t < testCount; ++t) {
-			prices[t] = ParseTest();
-		}
-
-		for (int t = 0; t < testCount; ++t) {
-			int dollar = prices[t] / 100;
-			int cent = prices[t] % 100;
+			int price = ParseTest();
+			int dollar = price / 100;
+			int cent = price % 100;
 			cout << dollar << '.' << cent / 10 << cent % 10 << '$' << endl;
 		}
-
-		delete[] prices;
 	}
 	catch (ios_base::failure e) {
 		return false;
@@ -102,11 +96,11 @@ int main() {
 #ifndef ONLINE_JUDGE
 	//Redirect stdin/out
 	ifstream in("D:\\Project\\News\\Debug\\in.txt");
-	streambuf *cinbuf = std::cin.rdbuf(); //save old buf
+	streambuf *cinbuf = cin.rdbuf(); //save old buf
 	cin.rdbuf(in.rdbuf()); //redirect std::cin to in.txt!
 
 	ofstream out("D:\\Project\\News\\Debug\\out.txt");
-	streambuf *coutbuf = std::cout.rdbuf(); //save old buf
+	streambuf *coutbuf = cout.rdbuf(); //save old buf
 	cout.rdbuf(out.rdbuf()); //redirect std::cout to out.txt!
 #endif // !ONLINE_JUDGE
 
